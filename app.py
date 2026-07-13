@@ -1,5 +1,8 @@
 import streamlit as st
 import joblib
+import pandas as pd
+import os
+from datetime import datetime
 
 # ----------------------------
 # Page Configuration
@@ -86,8 +89,10 @@ if st.button("🔍 Predict"):
         confidence = max(probability[0]) * 100
 
         if prediction[0] == 0:
+            result = "Fake"
             st.error("🚨 Fake News Detected")
         else:
+            result = "Real"
             st.success("✅ Real News Detected")
             st.balloons()
 
@@ -99,6 +104,39 @@ if st.button("🔍 Predict"):
         )
 
         st.progress(int(confidence))
+
+        # ----------------------------
+        # Save Prediction History
+        # ----------------------------
+        history = {
+            "Date": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+            "Prediction": result,
+            "Confidence": f"{confidence:.2f}%",
+            "News": news
+        }
+
+        history_file = "prediction_history.csv"
+
+        if os.path.exists(history_file):
+            df = pd.read_csv(history_file)
+            df = pd.concat([df, pd.DataFrame([history])], ignore_index=True)
+        else:
+            df = pd.DataFrame([history])
+
+        df.to_csv(history_file, index=False)
+
+# ----------------------------
+# Prediction History
+# ----------------------------
+st.divider()
+
+st.subheader("📜 Prediction History")
+
+if os.path.exists("prediction_history.csv"):
+    history_df = pd.read_csv("prediction_history.csv")
+    st.dataframe(history_df, use_container_width=True)
+else:
+    st.info("No prediction history available.")
 
 # ----------------------------
 # Footer
