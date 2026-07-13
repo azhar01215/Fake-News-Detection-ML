@@ -1,67 +1,100 @@
 # 📰 Fake News Detection System
 
-A Machine Learning based Fake News Detection System built using Python, Scikit-learn, TF-IDF Vectorizer, Logistic Regression and Streamlit.
+A Machine Learning based Fake News Detection Web Application built using **Logistic Regression**, **TF-IDF Vectorizer**, and **Streamlit**. The application predicts whether a news article is **Fake** or **Real** with high accuracy.
 
 ---
 
-## 🚀 Features
+## 🚀 Live Demo
 
-- Detect Fake and Real News
-- Logistic Regression Model
-- TF-IDF Text Vectorization
-- 99% Accuracy
-- Confidence Score
-- Clean Streamlit UI
-- Example News Button
-- Clear Button
-- Responsive Design
+👉 https://fake-news-detection-ml-jkntbqesifhfrdjz4kbcmd.streamlit.app/
 
 ---
 
-## 🛠️ Technologies Used
+## ✨ Features
+
+- ✅ Detect Fake or Real News
+- 📊 Confidence Score
+- 🤖 Logistic Regression Model
+- 📚 TF-IDF Vectorizer
+- 📝 Load Example News
+- 🗑️ Clear Input Button
+- 🎨 Professional Streamlit User Interface
+- ⚡ Fast Prediction
+
+---
+
+## 🛠 Technologies Used
 
 - Python
-- Streamlit
-- Scikit-learn
 - Pandas
 - NumPy
+- Scikit-learn
+- Streamlit
 - Joblib
-- TF-IDF
-- Logistic Regression
+- Git
+- GitHub
 
 ---
 
-## 📂 Project Structure
+## 📂 Dataset
 
-```
-fake_news/
-│
-├── data/
-├── app.py
-├── main.py
-├── fake_news_detection.ipynb
-├── model_analysis.ipynb
-├── fake_news_model.pkl
-├── tfidf_vectorizer.pkl
-├── requirements.txt
-├── README.md
-```
+The model is trained on two datasets:
+
+- **Fake.csv**
+- **True.csv**
+
+**Total News Articles:** **44,898**
+
+---
+
+## 📈 Model Performance
+
+| Metric | Score |
+|--------|-------|
+| Accuracy | **99%** |
+| Precision | **99%** |
+| Recall | **99%** |
+| F1-Score | **99%** |
+
+---
+
+## 📸 Application Screenshots
+
+### 🏠 Home Page
+
+![Home Page](screenshot/app.png)
+
+### ✅ Real News Prediction
+
+![Real News](screenshot/real_news.png)
+
+### 🚨 Fake News Prediction
+
+![Fake News](screenshot/fake_news.png)
 
 ---
 
 ## ⚙️ Installation
 
+Clone the repository
+
 ```bash
 git clone https://github.com/azhar01215/Fake-News-Detection-ML.git
 ```
+
+Go to the project folder
 
 ```bash
 cd Fake-News-Detection-ML
 ```
 
+Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
+
+Run the application
 
 ```bash
 streamlit run app.py
@@ -69,29 +102,29 @@ streamlit run app.py
 
 ---
 
-## 📊 Model
+## 📁 Project Structure
 
-Algorithm:
-
-- Logistic Regression
-
-Vectorizer:
-
-- TF-IDF
-
-Dataset Size:
-
-- 44,898 News Articles
-
-Accuracy:
-
-- 99%
-
----
-
-## 📷 Screenshots
-
-(Add screenshots here)
+```
+Fake-News-Detection-ML
+│
+├── app.py
+├── main.py
+├── fake_news_model.pkl
+├── tfidf_vectorizer.pkl
+├── fake_news_detection.ipynb
+├── model_analysis.ipynb
+├── requirements.txt
+├── README.md
+│
+├── data
+│   ├── Fake.csv
+│   └── True.csv
+│
+└── screenshot
+    ├── app.png
+    ├── real_news.png
+    └── fake_news.png
+```
 
 ---
 
@@ -99,12 +132,14 @@ Accuracy:
 
 **MD Azhar Mehemud Molla**
 
-Computer Science & Engineering (AI & ML)
+🎓 Computer Science & Engineering (AI & ML)
 
-Brainware University
+🏛️ Brainware University
+
+🌐 GitHub: https://github.com/azhar01215
 
 ---
 
-## ⭐ If you like this project
+## ⭐ Support
 
-Give this repository a ⭐ on GitHub.
+If you like this project, don't forget to **Star ⭐ this repository**.
