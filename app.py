@@ -1,59 +1,79 @@
 import streamlit as st
 import joblib
 
-# Load model and vectorizer
+# ----------------------------
+# Page Configuration
+# ----------------------------
+st.set_page_config(
+    page_title="Fake News Detection",
+    page_icon="📰",
+    layout="centered"
+)
+
+# ----------------------------
+# Load Model & Vectorizer
+# ----------------------------
 model = joblib.load("fake_news_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
-# Page settings
-st.set_page_config(page_title="Fake News Detection", page_icon="📰")
+# ----------------------------
+# Sidebar
+# ----------------------------
+st.sidebar.title("📌 Fake News Detection")
 
-st.sidebar.title("📊 Model Information")
+st.sidebar.info("""
+### 🤖 Machine Learning Project
 
-st.sidebar.success("Accuracy: 99%")
+**Algorithm:** Logistic Regression
 
-st.sidebar.write("### 🤖 Algorithm")
-st.sidebar.write("Logistic Regression")
+**Vectorizer:** TF-IDF
 
-st.sidebar.write("### 📚 Vectorizer")
-st.sidebar.write("TF-IDF")
+**Accuracy:** 99%
 
-st.sidebar.write("### 📂 Dataset")
-st.sidebar.write("44,898 News Articles")
+**Dataset:** 44,898 News Articles
 
-st.sidebar.write("### 👨‍💻 Developer")
-st.sidebar.write("MD Azhar Mehemud Molla")
+**Developer:** MD Azhar Mehemud Molla
+""")
 
-st.title("📰 Fake News Detection App")
+# ----------------------------
+# Main Title
+# ----------------------------
+st.title("📰 Fake News Detection System")
 
 st.markdown("""
-### About this Project
-
-This Fake News Detection System uses Machine Learning to classify whether a news article is **Fake** or **Real**.
-
-### Features
-- ✅ Machine Learning Model
-- ✅ TF-IDF Text Vectorization
-- ✅ Logistic Regression
-- ✅ Confidence Score
-- ✅ Interactive Web Application
+Detect whether a news article is **Fake** or **Real** using Machine Learning.
 """)
+
 st.divider()
 
-st.write("Enter a news article below and click Predict.")
+# ----------------------------
+# News Input
+# ----------------------------
+news = st.text_area(
+    "📝 Enter News Article",
+    height=220,
+    placeholder="Paste the complete news article here..."
+)
 
-news = st.text_area("Enter News")
-
-if st.button("Load Example News"):
+# ----------------------------
+# Example Button
+# ----------------------------
+if st.button("📄 Load Example News"):
     news = """The Government of India announced a new education policy to improve digital learning across the country."""
 
-if st.button("Clear"):
+# ----------------------------
+# Clear Button
+# ----------------------------
+if st.button("🗑️ Clear"):
     st.rerun()
 
-if st.button("Predict"):
+# ----------------------------
+# Prediction
+# ----------------------------
+if st.button("🔍 Predict"):
 
     if news.strip() == "":
-        st.warning("Please enter a news article.")
+        st.warning("⚠️ Please enter a news article.")
 
     else:
 
@@ -66,16 +86,27 @@ if st.button("Predict"):
         confidence = max(probability[0]) * 100
 
         if prediction[0] == 0:
-            st.error("🚨 Fake News")
+            st.error("🚨 Fake News Detected")
         else:
-            st.success("✅ Real News")
+            st.success("✅ Real News Detected")
+            st.balloons()
 
-        st.info(f"Confidence Score: {confidence:.2f}%")
+        st.info(f"📊 Confidence Score: {confidence:.2f}%")
+
+        st.metric(
+            label="Prediction Confidence",
+            value=f"{confidence:.2f}%"
+        )
 
         st.progress(int(confidence))
 
-        st.markdown("---")
-st.markdown(
-    "<center>Made with ❤️ using Streamlit & Scikit-learn</center>",
-    unsafe_allow_html=True
-)
+# ----------------------------
+# Footer
+# ----------------------------
+st.markdown("---")
+
+st.caption("👨‍💻 Developed by MD Azhar Mehemud Molla")
+
+st.caption("📰 Fake News Detection using Machine Learning")
+
+st.caption("🚀 Powered by Streamlit & Scikit-learn")
