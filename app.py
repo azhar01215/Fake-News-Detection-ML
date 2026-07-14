@@ -47,7 +47,7 @@ st.sidebar.info("""
 # Main Title
 # ----------------------------
 
-st.image("logo.png", width=120)
+st.image("logo.png", width=100)
 
 st.title("📰 Fake News Detection System")
 
