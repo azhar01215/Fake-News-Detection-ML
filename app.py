@@ -39,9 +39,16 @@ st.sidebar.info("""
 **Developer:** MD Azhar Mehemud Molla
 """)
 
+
+
+
+
 # ----------------------------
 # Main Title
 # ----------------------------
+
+st.image("logo.png", width=120)
+
 st.title("📰 Fake News Detection System")
 
 st.markdown("""
