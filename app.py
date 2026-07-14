@@ -64,6 +64,7 @@ news = st.text_area(
 # ----------------------------
 if st.button("📄 Load Example News"):
     news = """The Government of India announced a new education policy to improve digital learning across the country."""
+    st.rerun()
 
 # ----------------------------
 # Clear Button
@@ -105,35 +106,38 @@ if st.button("🔍 Predict"):
         )
 
         st.progress(int(confidence))
-# ----------------------------
-# Prediction Probability Chart
-# ----------------------------
 
-fake_probability = probability[0][0] * 100
-real_probability = probability[0][1] * 100
+        # ----------------------------
+        # Probability Chart
+        # ----------------------------
 
-st.subheader("📊 Prediction Probability")
+        fake_probability = probability[0][0] * 100
+        real_probability = probability[0][1] * 100
 
-fig, ax = plt.subplots(figsize=(6, 2.5))
+        st.subheader("📊 Prediction Probability")
 
-labels = ["Fake", "Real"]
-values = [fake_probability, real_probability]
+        fig, ax = plt.subplots(figsize=(6, 2.5))
 
-ax.barh(labels, values)
+        labels = ["Fake", "Real"]
+        values = [fake_probability, real_probability]
 
-ax.set_xlim(0, 100)
-ax.set_xlabel("Probability (%)")
-ax.set_title("Model Confidence")
+        ax.barh(labels, values)
 
-for i, v in enumerate(values):
-    ax.text(v + 1, i, f"{v:.2f}%", va="center")
+        ax.set_xlim(0, 100)
+        ax.set_xlabel("Probability (%)")
+        ax.set_title("Model Confidence")
 
-st.pyplot(fig)
-plt.close(fig)
+        for i, v in enumerate(values):
+            ax.text(v + 1, i, f"{v:.2f}%", va="center")
+
+        st.pyplot(fig)
+
+        plt.close(fig)
 
         # ----------------------------
         # Save Prediction History
         # ----------------------------
+
         history = {
             "Date": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
             "Prediction": result,
@@ -154,19 +158,21 @@ plt.close(fig)
 # ----------------------------
 # Prediction History
 # ----------------------------
+
 st.divider()
 
 st.subheader("📜 Prediction History")
 
-if os.path.exists("prediction_history.csv"):
-    history_df = pd.read_csv("prediction_history.csv")
+history_file = "prediction_history.csv"
+
+if os.path.exists(history_file):
+
+    history_df = pd.read_csv(history_file)
+
     st.dataframe(history_df, use_container_width=True)
-else:
-    st.info("No prediction history available.")
-    
-    # Download Prediction History
-if os.path.exists("prediction_history.csv"):
-    with open("prediction_history.csv", "rb") as file:
+
+    with open(history_file, "rb") as file:
+
         st.download_button(
             label="📥 Download Prediction History",
             data=file,
@@ -174,9 +180,14 @@ if os.path.exists("prediction_history.csv"):
             mime="text/csv"
         )
 
+else:
+
+    st.info("No prediction history available.")
+
 # ----------------------------
 # Footer
 # ----------------------------
+
 st.markdown("---")
 
 st.caption("👨‍💻 Developed by MD Azhar Mehemud Molla")
