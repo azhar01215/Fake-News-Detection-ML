@@ -5,3 +5,7 @@ __pycache__/
 *.pyo
 *.pyd
 .DS_Store
+prediction_history.csv
+venv/
+__pycache__/
+*.pyc
