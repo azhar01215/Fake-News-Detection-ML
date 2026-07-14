@@ -3,6 +3,7 @@ import joblib
 import pandas as pd
 import os
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 # ----------------------------
 # Page Configuration
@@ -104,6 +105,31 @@ if st.button("🔍 Predict"):
         )
 
         st.progress(int(confidence))
+# ----------------------------
+# Prediction Probability Chart
+# ----------------------------
+
+fake_probability = probability[0][0] * 100
+real_probability = probability[0][1] * 100
+
+st.subheader("📊 Prediction Probability")
+
+fig, ax = plt.subplots(figsize=(6, 2.5))
+
+labels = ["Fake", "Real"]
+values = [fake_probability, real_probability]
+
+ax.barh(labels, values)
+
+ax.set_xlim(0, 100)
+ax.set_xlabel("Probability (%)")
+ax.set_title("Model Confidence")
+
+for i, v in enumerate(values):
+    ax.text(v + 1, i, f"{v:.2f}%", va="center")
+
+st.pyplot(fig)
+plt.close(fig)
 
         # ----------------------------
         # Save Prediction History
@@ -137,6 +163,16 @@ if os.path.exists("prediction_history.csv"):
     st.dataframe(history_df, use_container_width=True)
 else:
     st.info("No prediction history available.")
+    
+    # Download Prediction History
+if os.path.exists("prediction_history.csv"):
+    with open("prediction_history.csv", "rb") as file:
+        st.download_button(
+            label="📥 Download Prediction History",
+            data=file,
+            file_name="prediction_history.csv",
+            mime="text/csv"
+        )
 
 # ----------------------------
 # Footer
