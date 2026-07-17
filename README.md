@@ -143,3 +143,47 @@ Fake-News-Detection-ML
 ## ⭐ Support
 
 If you like this project, don't forget to **Star ⭐ this repository**.
+
+
+
+
+# Hi 👋, I'm MD Azhar Mehemud Molla
+
+### 🎓 Computer Science & Engineering (AI & ML) Student
+
+I am passionate about Machine Learning, Artificial Intelligence, Python and Web Development.
+
+---
+
+## 🚀 Skills
+
+- Python
+- Machine Learning
+- Scikit-learn
+- Pandas
+- NumPy
+- Streamlit
+- HTML
+- CSS
+- Git & GitHub
+
+---
+
+## 📌 Featured Project
+
+### 📰 Fake News Detection System
+
+Machine Learning based Fake News Detection web application using Logistic Regression, TF-IDF and Streamlit.
+
+🔗 Project Repository:
+https://github.com/azhar01215/Fake-News-Detection-ML
+
+🌐 Live Demo:
+(এখানে তোমার Streamlit App Link)
+
+---
+
+## 📫 Contact
+
+GitHub:
+https://github.com/azhar01215
